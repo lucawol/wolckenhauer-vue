@@ -1,26 +1,16 @@
 <template>
-
-<div>
-  <div class="navbar">
-    <div class="navbar-item">
-      Home
-    </div>
-    <div class="navbar-item">
-      About
-    </div>
-    <div class="navbar-item">
-      Contact
-    </div>
+  <div>
+    <HomeView></HomeView>
   </div>
-</div>
-  
 </template>
 
 <script>
+import HomeView from "./views/HomeView.vue"
 
 export default {
   name: 'App',
   components: {
+    HomeView,
   }
 }
 </script>
@@ -28,19 +18,13 @@ export default {
 <style>
   body{
     margin: 0;
+    padding: 0;
+    background-color: black;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
   }
-  .navbar-container{
 
-  }
-  .navbar{
-    display: flex;
-    position: fixed;
-    left: 0;
-    border: black solid 1em;
-    width: calc(100% - 2em)
-  }
-  .navbar-item{
-    margin-right: 1em;
-  }
+
 
 </style>
