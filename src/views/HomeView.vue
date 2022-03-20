@@ -111,7 +111,13 @@
                     </div>
                     <div class="project-content">
                         <p>tests with websockets and temperature readers</p>
-                        This little project was just a test
+                        <img src="../assets/solarflarepi-presentation.gif">
+                        <p>
+                        This Project was made out of an Raspberry Pi Nano and a Django Webserver. The Website
+                        shows the live temperature of an sensor connected to the pi. The Temperature is sent over
+                        TCP from the Pi to the Webserver. <a target="_blank" href="https://github.com/CruZer0/solarflare-pi">Github Link</a>.
+                        </p>
+
                     </div>
                 </div>
                 <div class="project">
@@ -128,7 +134,8 @@
                         module called reddit-juice which i have written in TS.
                         Right now the App is in early development and far behind the feature set
                         it should have. Later i want to add a settings menu and add touch gestures
-                        for navigation.
+                        for navigation. This is still an private repository so i can only offer an
+                        <a href="../assets/downloads/peddit-main.zip" download>Download Link</a> 
                         </p>
                     </div>
                 </div>
@@ -138,6 +145,9 @@
                     </div>
                     <div class="project-content">
                         <p>Personal Website</p>
+                        <p>
+                        Its this Website :)
+                        </p>
                     </div>
                 </div>
             </div>
