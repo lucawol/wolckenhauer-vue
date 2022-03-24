@@ -212,6 +212,10 @@ export default {
       padding: 1em;
       margin-top: 1em;
   }
+  .skillSection h1{
+      margin-bottom: 1em;
+      text-align: center;
+  }
   .skill{
       display: flex;
       font-size: 1em;
@@ -224,6 +228,12 @@ export default {
   .skillContainer{
       display: flex;
       flex-direction: row;
+  }
+  .projectSection{
+        border: white .3em solid;
+        border-radius: 1em;
+        margin-top: 1em;
+        padding: 1em;
   }
   .projectContainer{
       display: flex;
