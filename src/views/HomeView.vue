@@ -1,16 +1,17 @@
 <template>
-    <div class="topSection">
+    <PDFViewer></PDFViewer>
+    <div class="top-section">
 
     </div>
-    <div class="titleSection">
+    <div class="title-section">
       <h1>Luca Wolckenhauer</h1>
       <hr>
       <h1>IT-Specialist and Programmer</h1>
     </div>
-    <div class="mainContent">
-        <div class="introductionSection">
-            <img class="introductionImage" src="../assets/lucawolckenhauer-cropped.jpg">
-            <div class="introductionText">
+    <div class="main-content">
+        <div class="introduction-section">
+            <img class="introduction-image" src="../assets/lucawolckenhauer-cropped.jpg">
+            <div class="introduction-text">
                 <h1>hello im Luca, let me introduce myself!</h1>
                 <p>I'm really fascinated by and into technology in general. I like to understand<br>
                 how stuff works under the hood and then make something new based on this knowledge.<br>
@@ -20,9 +21,9 @@
                 </p>
             </div>
         </div>
-        <div class="skillSection">
+        <div class="skill-section">
             <h1>My Skills</h1>
-            <div class="skillContainer">
+            <div class="skill-container">
                 <div class="skilltree">
                     <h1>languages</h1>
                     <div class="skill">
@@ -102,9 +103,9 @@
                 </div>
             </div>
         </div>
-        <div class="projectSection">
+        <div class="project-section">
             <h1>Projects</h1>
-            <div class="projectContainer">
+            <div class="project-container">
                 <div class="project">
                     <div class="project-title">
                         <h1>solarflare-pi</h1>
@@ -146,38 +147,52 @@
                     <div class="project-content">
                         <p>Personal Website</p>
                         <p>
-                        Its this Website :)
+                        a website that gives me an stage to present myself. its also this very website :)
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="certification-section">
+            <h1>Certificates</h1>
+            <p>In the past i completed multiple certficates. Please take a look.</p>
+            <div class="certification-container">
+                <img src="../assets/cisco-ccna-white.jpg">
+                <h1>Cisco CCNA Certification</h1>
+                <p>Open Certificate</p>
             </div>
         </div>   
     </div>   
 </template>
 
 <script>
+import PDFViewer from "../components/PDFViewer.vue"
+
 export default {
-    name: "HomeView"
+    name: "HomeView",
+    components: {
+        PDFViewer
+    }
 }
 </script>
 
 <style scoped>
 
-  .titleSection{
+  .title-section{
     text-align: center;
     width: 100%;
   }
 
-  .mainContent{
+  .main-content{
     width: 60%;
     margin: auto;
   }
 
-  .titleSection hr{
+  .title-section hr{
     width: 60%;
     color: white;
   }
-  .introductionSection{
+  .introduction-section{
     display: flex;
     align-items: flex-start;
     border: white solid 0.3em;
@@ -187,11 +202,11 @@ export default {
     animation-duration: 1s;
     overflow:hidden;
   }
-  .introductionSection h1{
+  .introduction-section h1{
     padding: 0;
     margin: 0;
   }
-  .introductionImage{
+  .introduction-image{
     min-width: 25%;
     width: 25%;
     margin-right: 3em;
@@ -206,7 +221,7 @@ export default {
       align-self: center;
       margin-right: 1em;
   }
-  .skillSection{
+  .skill-section{
       border: white solid 0.3em;
       border-radius: 1em;
       padding: 1em;
@@ -221,11 +236,11 @@ export default {
       transform: scale(110%);
       cursor: pointer;
   }
-  .skillContainer{
+  .skill-container{
       display: flex;
       flex-direction: row;
   }
-  .projectContainer{
+  .project-container{
       display: flex;
       flex-direction:column;
       margin-top: 1em;
