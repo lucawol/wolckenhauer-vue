@@ -227,6 +227,10 @@ export default {
       padding: 1em;
       margin-top: 1em;
   }
+  .skillSection h1{
+      margin-bottom: 1em;
+      text-align: center;
+  }
   .skill{
       display: flex;
       font-size: 1em;
