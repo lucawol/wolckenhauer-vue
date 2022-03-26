@@ -1,7 +1,7 @@
 <template>
-    <PDFViewer></PDFViewer>
+    <component :is="view" v-bind:url="vurl" @closeViewer="view = ''"></component>
     <div class="top-section">
-
+    
     </div>
     <div class="title-section">
       <h1>Luca Wolckenhauer</h1>
@@ -157,21 +157,39 @@
             <h1>Certificates</h1>
             <p>In the past i completed multiple certficates. Please take a look.</p>
             <div class="certification-container">
-                <img src="../assets/cisco-ccna-white.jpg">
-                <h1>Cisco CCNA Certification</h1>
-                <p>Open Certificate</p>
+                <div v-on:click="this.vurl = require('../assets/certificates/cisco_ccna.png'); this.view = 'imgViewer'" class="certificate">
+                    <img src="../assets/cisco-ccna-white.jpg">
+                    <h1>Cisco CCNA</h1>
+                    <p>Click anywhere to show certificate</p>
+                </div>
+                <div v-on:click="this.vurl = require('../assets/certificates/moc2074.png'); this.view = 'imgViewer'" class="certificate">
+                    <img src="../assets/ms-logo-cert.png">
+                    <h1>Microsoft MOC2074</h1>
+                    <p>Click anywhere to show certificate</p>
+                </div>
+                <div v-on:click="this.vurl = require('../assets/certificates/securepoint-utm.png'); this.view = 'imgViewer'" class="certificate">
+                    <img src="../assets/securepoint_logo.jpg">
+                    <h1>Securepoint UTM</h1>
+                    <p>Click anywhere to show certificate</p>
+                </div>
             </div>
         </div>   
     </div>   
 </template>
 
 <script>
-import PDFViewer from "../components/PDFViewer.vue"
+import ImgViewer from "../components/ImgViewer.vue"
 
 export default {
     name: "HomeView",
     components: {
-        PDFViewer
+        ImgViewer
+    },
+    data(){
+        return{
+            view: '',
+            vurl: ''
+        }
     }
 }
 </script>
@@ -278,5 +296,21 @@ export default {
   @keyframes scaleDown {
       from{scale: 400%}
       to{scale: 100%}
+  }
+  .certification-container{
+      display: flex;
+      flex-direction: row;
+  }
+  .certificate{
+      width: 50%;
+      border: 0.2em white solid;
+      padding: 1em;
+  }
+  .certificate:hover{
+      transform: scale(105%);
+      cursor: pointer;
+  }
+  .certificate img{
+      width: 100%;
   }
 </style>
