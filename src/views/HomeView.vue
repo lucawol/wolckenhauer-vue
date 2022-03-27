@@ -126,15 +126,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-hidden">
-                        <p>tests with websockets and temperature readers</p>
-                        <img src="../assets/solarflarepi-presentation.gif">
-                        <p>
-                        This Project was made out of an Raspberry Pi Nano and a Django Webserver. The Website
-                        shows the live temperature of an sensor connected to the pi. The Temperature is sent over
-                        TCP from the Pi to the Webserver. <a target="_blank" href="https://github.com/CruZer0/solarflare-pi">Github Link</a>.
-                        </p>
-                    </div>
                 </div>
                 <div class="project">
                     <div class="project-title">
@@ -212,6 +203,12 @@ export default {
             view: '',
             vurl: ''
         }
+    },
+    methods: {
+        openViewer() {
+            
+        },
+        closeViewer() {}
     }
 }
 </script>
@@ -285,13 +282,13 @@ export default {
     }
     .project-section{
         margin-top: 1em;
+        z-index: 0;
     }
     .project-container{
         display: flex;
         margin-top: 1em;
         justify-content: center;
         align-items: center;
-        
     }
     .project{
         border: white solid 0.3em;
@@ -299,49 +296,48 @@ export default {
         margin-bottom: 1em;
         margin-left: 1em;
         flex: 1;
-        flex-shrink: 0;
         align-items: center;
-        width: 30em;
-        height: 30em;
     }
     .project-card{
         background-color: transparent;
-        width: 100%;
-        height: 100%;
+        width: 25em;
+        height: 26em;
         position: relative;
         transition: transform 0.5s;
         transform-style: preserve-3d;
-
+        z-index: 0;
     }
     .project-scene{
-        perspective: 1000px;
-        z-index: 2;
+        perspective: 1000px;   
     }
     .project-scene:hover .project-card{
         transform: rotateY(180deg);
     }
     .project-face{
         position: absolute;
+        top: 0;
+        left: 0;
         backface-visibility: hidden;
+        z-index: 1;
     }
 
-    .project-front{
-        background-color: #FFF;
-    }
     .project-back .project-card{
         background-color: black;
     }
     .project-front{
         background-color: white;
+        width: 100%;
+        height: 100%;
     }
     .project-back{
         background-color: black;
-        transform: rotateY(180deg)
+        width: 100%;
+        height: 100%;
+        transform: rotateY(180deg);
     }
     .project-title{
         background-color: white;
-        color: black;
-        
+        color: black;   
     }
     .project-title h1{
         margin: 0;
@@ -349,12 +345,13 @@ export default {
         font-weight: normal;
         text-align: center;
     }
-    .project-front .project-back img{
-        max-width: 100%;
+    .project-back img{
+        width: 25em;
     }
     .project-hidden{
         opacity: 0;
-        z-index: 0;
+        z-index: -1;
+        width: 33%; 
     }
 
     @keyframes scaleDown {

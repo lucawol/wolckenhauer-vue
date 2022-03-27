@@ -37,9 +37,9 @@ export default {
     min-height: 100%;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
 }
-.image{
-    z-index: 1;
+.image img{
     max-width: 100%;
 
 }
@@ -47,7 +47,7 @@ export default {
     min-height: 100%;
     min-width: 100%;
     position:fixed;
-    z-index: 2;
+    z-index: 10;
 }
 .viewer-container p{
     font-size: 2em;
