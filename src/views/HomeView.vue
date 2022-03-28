@@ -117,7 +117,7 @@
                             </div>
                             <div class="project-face project-back">
                                 <p>tests with websockets and temperature readers</p>
-                                <img src="../assets/solarflarepi-presentation.gif">
+                                <video autoplay loop src="../assets/movies/solarflare-pi.webm"></video>
                                 <p>
                                 This Project was made out of an Raspberry Pi Nano and a Django Webserver. The Website
                                 shows the live temperature of an sensor connected to the pi. The Temperature is sent over
@@ -131,19 +131,26 @@
                     <div class="project-title">
                         <h1>peddit</h1>
                     </div>
-                    <div class="project-content">
-                        <p>a electron reddit client</p>
-                        <img src="../assets/peddit-presentation.gif">
-                        <p>
-                        This App is supposed to run on a small (max. 12 inch) Screen and
-                        Scroll your personal Reddit Home Feed. 
-                        For the authentification and API Calls there is an seperate 
-                        module called reddit-juice which i have written in TS.
-                        Right now the App is in early development and far behind the feature set
-                        it should have. Later i want to add a settings menu and add touch gestures
-                        for navigation. This is still an private repository so i can only offer an
-                        <a href="../assets/downloads/peddit-main.zip" download>Download Link</a> 
-                        </p>
+                    <div class="project-scene">
+                        <div class="project-card">
+                            <div class="project-face project-front">
+
+                            </div>
+                            <div class="project-face project-back">
+                                <p>a electron reddit client</p>
+                                <video autoplay loop src="../assets/movies/peddit_show.webm"></video>
+                                <p>
+                                    This App is supposed to run on a small (max. 12 inch) Screen and
+                                    Scroll your personal Reddit Home Feed. 
+                                    For the authentification and API Calls there is an seperate 
+                                    module called reddit-juice which i have written in TS.
+                                    Right now the App is in early development and far behind the feature set
+                                    it should have. Later i want to add a settings menu and add touch gestures
+                                    for navigation. This is still an private repository so i can only offer an
+                                    <a href="../assets/downloads/peddit-main.zip" download>Download Link</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="project">
@@ -301,7 +308,7 @@ export default {
     .project-card{
         background-color: transparent;
         width: 25em;
-        height: 26em;
+        height: 36em;
         position: relative;
         transition: transform 0.5s;
         transform-style: preserve-3d;
@@ -335,6 +342,9 @@ export default {
         height: 100%;
         transform: rotateY(180deg);
     }
+    .project-back p{
+        padding: 0.4em;
+    }
     .project-title{
         background-color: white;
         color: black;   
@@ -345,8 +355,8 @@ export default {
         font-weight: normal;
         text-align: center;
     }
-    .project-back img{
-        width: 25em;
+    .project-back video{
+        width: 100%;
     }
     .project-hidden{
         opacity: 0;
