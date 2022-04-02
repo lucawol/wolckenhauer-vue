@@ -1,16 +1,19 @@
 <template>
     <component :is="view" v-bind:url="vurl" @closeViewer="view = ''"></component>
     <div class="top-section">
-    
+
     </div>
-    <div class="title-section">
-      <h1>Luca Wolckenhauer</h1>
-      <hr>
-      <h1>IT-Specialist and Programmer</h1>
+    <div id="title-section" class="title-section">
+        <div class="title-container">
+            <h1 class="title-name">Luca Wolckenhauer</h1>
+            <hr>
+            <h1 class="title-desc">IT-Specialist and Programmer</h1>
+        </div>
+
     </div>
     <div class="main-content">
-        <div class="introduction-section">
-            <img class="introduction-image" src="../assets/lucawolckenhauer-cropped.jpg">
+        <div v-bind:style="{animation: this.introductionAnimation}" class="introduction-section" id="introductionSection" >
+            <img class="introduction-image" src="../assets/lucawolckenhauer-cropped.jpg" v-bind:style="{animation: introductionAnimation}">
             <div class="introduction-text">
                 <h1>hello im Luca, let me introduce myself!</h1>
                 <p>I'm really fascinated by and into technology in general. I like to understand<br>
@@ -104,7 +107,7 @@
             </div>
         </div>
         <div class="project-section">
-            <h1>Projects</h1>
+            <h1>Personal Projects</h1>
             <div class="project-container">
                 <div class="project">
                     <div class="project-title">
@@ -157,11 +160,19 @@
                     <div class="project-title">
                         <h1>wolckenhauerNET</h1>
                     </div>
-                    <div class="project-content">
-                        <p>Personal Website</p>
-                        <p>
-                        a website that gives me an stage to present myself. its also this very website :)
-                        </p>
+                    <div class="project-scene">
+                        <div class="project-card">
+                            <div class="project-face project-front">
+
+                            </div>
+                            <div class="project-face project-back">
+                                <p>Personal Website</p>
+                                <video autoplay loop src="../assets/movies/lwwebsite.webm"></video>
+                                <p>
+                                    a website that gives me an stage to present myself. its also this very website :)
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -208,183 +219,413 @@ export default {
     data(){
         return{
             view: '',
-            vurl: ''
+            vurl: '',
+            introductionAnimation: '',
+            titleAnimationTimeline: '',
+            introductionIntersection: null,
+            skillIntersection: null,
+            projectIntersection: null,
+            certIntersection: null,
         }
     },
+    mounted(){
+        this.introductionIntersection.observe(document.querySelector("#introductionSection"))
+        
+    },
+    created(){
+        var introductionIteration = 0
+        this.introductionIntersection = new IntersectionObserver(() => {
+
+            if(introductionIteration > 0){
+                this.introductionAnimation = "scaleDown .7s linear forwards"
+            }
+            else{
+                introductionIteration++
+            }
+        }, {threshold: [1]})
+        
+
+
+    },
     methods: {
-        openViewer() {
+        titleAnimationChanger(){
             
-        },
-        closeViewer() {}
+        }
     }
 }
 </script>
 
-<style scoped>
+<style>
+    @media not screen and (max-width: 600px){
+        @keyframes scaleDown {
+            from{scale: 400%; opacity: 0;}
+            to{scale: 100%; opacity: 1;}
+        }
+        @keyframes titleFadeIn {
+            to{opacity: 100%;}
+        }
+        @keyframes titleScrollAnimation{
+            from{color: white}
+            to{color: red}
+        }
+        @keyframes titleNameMove {
+            from{transform: translateX(300%);}
+            to{transform: translateX(0%);}
+        }
+        @keyframes titleDescMove {
+            from{transform: translateX(-300%); opacity: 1;}
+            to{transform: translateX(0%); opacity: 1;}
+        }
 
-    .title-section{
-        text-align: center;
-        width: 100%;
-    }
-    .main-content{
-        width: 60%;
-        margin: auto;
-    }
-    .title-section hr{
-        width: 60%;
-        color: white;
-    }
-    .introduction-section{
-        display: flex;
-        align-items: flex-start;
-        border: white solid 0.3em;
-        border-radius: 1em;
-        padding: 1em;
-        animation-name: scaleDown;
-        animation-duration: 1s;
-        overflow:hidden;
-        margin-top: 1em;
-    }
-    .introduction-section h1{
-        padding: 0;
-        margin: 0;
-    }
-    .introduction-image{
-        min-width: 25%;
-        width: 25%;
-        margin-right: 3em;
-    }
-    .skilltree{
-        display: flex;
-        flex-direction: column;
-        margin-right: 4em;
-    }
-    .skilltree img {
-        width: 3em;
-        align-self: center;
-        margin-right: 1em;
-    }
-    .skill-section{
-        border: white solid 0.3em;
-        border-radius: 1em;
-        padding: 1em;
-        margin-top: 1em;
-    }
-    .skill-section h1{
-        margin-bottom: 1em;
-        text-align: center;
-    }
-    .skill{
-        display: flex;
-        font-size: 1em;
-        margin-bottom: .5em;
-    }
-    .skill:hover{
-        transform: scale(110%);
-        cursor: pointer;
-    }
-    .skill-container{
-        display: flex;
-        flex-direction: row;
-    }
-    .project-section{
-        margin-top: 1em;
-        z-index: 0;
-    }
-    .project-container{
-        display: flex;
-        margin-top: 1em;
-        justify-content: center;
-        align-items: center;
-    }
-    .project{
-        border: white solid 0.3em;
-        border-radius: 1em;
-        margin-bottom: 1em;
-        margin-left: 1em;
-        flex: 1;
-        align-items: center;
-    }
-    .project-card{
-        background-color: transparent;
-        width: 25em;
-        height: 36em;
-        position: relative;
-        transition: transform 0.5s;
-        transform-style: preserve-3d;
-        z-index: 0;
-    }
-    .project-scene{
-        perspective: 1000px;   
-    }
-    .project-scene:hover .project-card{
-        transform: rotateY(180deg);
-    }
-    .project-face{
-        position: absolute;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        z-index: 1;
-    }
+        .title-section{
+            width: 100%;
+            height: 100vh;
+        }
+        .title-section hr{
+            width: 60%;
+            color: white;
+        }
+        .title-container{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            animation: titleZoomOut 2s linear;
+            flex-direction: column;
+            height: 100%;
+        }
+        .title-name{
+            animation: titleNameMove 1s ease-in forwards;
+        }
+        .title-desc{
+            animation: titleDescMove 1s ease-in forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+        .main-content{
+            width: 60%;
+            margin: auto;
+        }
 
-    .project-back .project-card{
-        background-color: black;
-    }
-    .project-front{
-        background-color: white;
-        width: 100%;
-        height: 100%;
-    }
-    .project-back{
-        background-color: black;
-        width: 100%;
-        height: 100%;
-        transform: rotateY(180deg);
-    }
-    .project-back p{
-        padding: 0.4em;
-    }
-    .project-title{
-        background-color: white;
-        color: black;   
-    }
-    .project-title h1{
-        margin: 0;
-        padding: 0em 0.5em 0em 0.5em;
-        font-weight: normal;
-        text-align: center;
-    }
-    .project-back video{
-        width: 100%;
-    }
-    .project-hidden{
-        opacity: 0;
-        z-index: -1;
-        width: 33%; 
-    }
+        .introduction-section{
+            display: flex;
+            align-items: flex-start;
+            border: white solid 0.3em;
+            border-radius: 1em;
+            padding: 1em;
+            overflow:hidden;
+            margin-top: 1em;
+            opacity: 0;
+        }
+        .introduction-section h1{
+            padding: 0;
+            margin: 0;
+        }
+        .introduction-image{
+            min-width: 25%;
+            width: 25%;
+            margin-right: 3em;
+        }
+        .skilltree{
+            display: flex;
+            flex-direction: column;
+            margin-right: 4em;
+        }
+        .skilltree img {
+            width: 3em;
+            align-self: center;
+            margin-right: 1em;
+        }
+        .skill-section{
+            border: white solid 0.3em;
+            border-radius: 1em;
+            padding: 1em;
+            margin-top: 1em;
+        }
+        .skill-section h1{
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .skill{
+            display: flex;
+            font-size: 1em;
+            margin-bottom: .5em;
+        }
+        .skill:hover{
+            transform: scale(110%);
+            cursor: pointer;
+        }
+        .skill-container{
+            display: flex;
+            flex-direction: row;
+        }
+        .project-section{
+            margin-top: 1em;
+            z-index: 0;
+        }
+        .project-container{
+            display: flex;
+            margin-top: 1em;
+            justify-content: center;
+            align-items: center;
+        }
+        .project{
+            border: white solid 0.3em;
+            border-radius: 1em;
+            margin-bottom: 1em;
+            margin-left: 1em;
+            flex: 1;
+            align-items: center;
+        }
+        .project-card{
+            background-color: transparent;
+            width: 25em;
+            height: 36em;
+            position: relative;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            z-index: 0;
+        }
+        .project-scene{
+            perspective: 1000px;   
+        }
+        .project-scene:hover .project-card{
+            transform: rotateY(180deg);
+        }
+        .project-face{
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            z-index: 1;
+        }
 
-    @keyframes scaleDown {
-        from{scale: 400%}
-        to{scale: 100%}
+        .project-back .project-card{
+            background-color: black;
+        }
+        .project-front{
+            background-color: white;
+            width: 100%;
+            height: 100%;
+        }
+        .project-back{
+            background-color: black;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg);
+        }
+        .project-back p{
+            padding: 0.4em;
+        }
+        .project-title{
+            background-color: white;
+            color: black;   
+        }
+        .project-title h1{
+            margin: 0;
+            padding: 0em 0.5em 0em 0.5em;
+            font-weight: normal;
+            text-align: center;
+        }
+        .project-back video{
+            width: 100%;
+        }
+        .project-hidden{
+            opacity: 0;
+            z-index: -1;
+            width: 33%; 
+        }
+        .certification-container{
+            display: flex;
+            flex-direction: row;
+        }
+        .certificate{
+            width: 50%;
+            border: 0.2em white solid;
+            padding: 1em;
+        }
+        .certificate:hover{
+            transform: scale(105%);
+            cursor: pointer;
+        }
+        .certificate img{
+            width: 100%;
+        }
+        .contact-section{
+            margin-top: 1em;
+        } 
+
+    @media screen and (max-width: 600px){
+        .title-section{
+            text-align: center;
+            width: 100%;
+        }
+        .main-content{
+            width: 60%;
+            margin: auto;
+        }
+        .title-section hr{
+            width: 60%;
+            color: white;
+        }
+        .introduction-section{
+            display: flex;
+            align-items: flex-start;
+            border: white solid 0.3em;
+            border-radius: 1em;
+            padding: 1em;
+            animation-name: scaleDown;
+            animation-duration: 1s;
+            overflow:hidden;
+            margin-top: 1em;
+        }
+        .introduction-section h1{
+            padding: 0;
+            margin: 0;
+        }
+        .introduction-image{
+            min-width: 25%;
+            width: 25%;
+            margin-right: 3em;
+        }
+        .skilltree{
+            display: flex;
+            flex-direction: column;
+            margin-right: 4em;
+        }
+        .skilltree img {
+            width: 3em;
+            align-self: center;
+            margin-right: 1em;
+        }
+        .skill-section{
+            border: white solid 0.3em;
+            border-radius: 1em;
+            padding: 1em;
+            margin-top: 1em;
+        }
+        .skill-section h1{
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .skill{
+            display: flex;
+            font-size: 1em;
+            margin-bottom: .5em;
+        }
+        .skill:hover{
+            transform: scale(110%);
+            cursor: pointer;
+        }
+        .skill-container{
+            display: flex;
+            flex-direction: row;
+        }
+        .project-section{
+            margin-top: 1em;
+            z-index: 0;
+        }
+        .project-container{
+            display: flex;
+            margin-top: 1em;
+            justify-content: center;
+            align-items: center;
+        }
+        .project{
+            border: white solid 0.3em;
+            border-radius: 1em;
+            margin-bottom: 1em;
+            margin-left: 1em;
+            flex: 1;
+            align-items: center;
+        }
+        .project-card{
+            background-color: transparent;
+            width: 10vw;
+            height: 30vh;
+            position: relative;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            z-index: 0;
+        }
+        .project-scene{
+            perspective: 1000px;   
+        }
+        .project-scene:hover .project-card{
+            transform: rotateY(180deg);
+        }
+        .project-face{
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            z-index: 1;
+        }
+
+        .project-back .project-card{
+            background-color: black;
+        }
+        .project-front{
+            background-color: white;
+            width: 100%;
+            height: 100%;
+        }
+        .project-back{
+            background-color: black;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg);
+        }
+        .project-back p{
+            padding: 0.4em;
+        }
+        .project-title{
+            background-color: white;
+            color: black;   
+        }
+        .project-title h1{
+            margin: 0;
+            padding: 0em 0.5em 0em 0.5em;
+            font-weight: normal;
+            text-align: center;
+        }
+        .project-back video{
+            width: 100%;
+        }
+        .project-hidden{
+            opacity: 0;
+            z-index: -1;
+            width: 33%; 
+        }
+
+        @keyframes scaleDown {
+            from{scale: 400%}
+            to{scale: 100%}
+        }
+
+        @keyframes titleFadeIn {
+            from{opacity: 0%;}
+            to{opacity: 100%;}
+        }
+        .certification-container{
+            display: flex;
+            flex-direction: row;
+        }
+        .certificate{
+            width: 50%;
+            border: 0.2em white solid;
+            padding: 1em;
+        }
+        .certificate:hover{
+            transform: scale(105%);
+            cursor: pointer;
+        }
+        .certificate img{
+            width: 100%;
+        }
+        .contact-section{
+            margin-top: 1em;
+        } 
     }
-    .certification-container{
-        display: flex;
-        flex-direction: row;
-    }
-    .certificate{
-        width: 50%;
-        border: 0.2em white solid;
-        padding: 1em;
-    }
-    .certificate:hover{
-        transform: scale(105%);
-        cursor: pointer;
-    }
-    .certificate img{
-        width: 100%;
-    }
-    .contact-section{
-        margin-top: 1em;
     }
 </style>
