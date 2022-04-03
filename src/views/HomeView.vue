@@ -7,11 +7,13 @@
         <div class="title-container">
             <h1 class="title-name">Luca Wolckenhauer</h1>
             <hr>
-            <h1 class="title-desc">IT-Specialist and Programmer</h1>
+            <h1 class="title-desc" id="titleDesc">IT-Specialist and Programmer</h1>
         </div>
-
+        <div class="arrow-container" v-bind:style="{display: titleArrowVisibility}">
+            <img src="../assets/arrowdown.gif">
+        </div>
     </div>
-    <div class="main-content">
+    <div class="main-content" v-bind:style="{display: showMainContent}">
         <div v-bind:style="{animation: this.introductionAnimation}" class="introduction-section" id="introductionSection" >
             <img class="introduction-image" src="../assets/lucawolckenhauer-cropped.jpg" v-bind:style="{animation: introductionAnimation}">
             <div class="introduction-text">
@@ -116,7 +118,7 @@
                     <div class="project-scene">
                         <div class="project-card">
                             <div class="project-face project-front">
-
+                                <p>Hover</p>
                             </div>
                             <div class="project-face project-back">
                                 <p>tests with websockets and temperature readers</p>
@@ -137,7 +139,7 @@
                     <div class="project-scene">
                         <div class="project-card">
                             <div class="project-face project-front">
-
+                                <p>Hover</p>
                             </div>
                             <div class="project-face project-back">
                                 <p>a electron reddit client</p>
@@ -163,13 +165,15 @@
                     <div class="project-scene">
                         <div class="project-card">
                             <div class="project-face project-front">
-
+                                <p>Hover</p>
                             </div>
                             <div class="project-face project-back">
                                 <p>Personal Website</p>
                                 <video autoplay loop src="../assets/movies/lwwebsite.webm"></video>
                                 <p>
-                                    a website that gives me an stage to present myself. its also this very website :)
+                                    a website that gives me an stage to present myself. its also this very website :) 
+                                    when you are interested in the source code here is the github link on behalf the <a target="_blank" href="https://github.com/CruZer0/wolckenhauer-vue">frontend</a> and here's
+                                    the github link for the <a href="https://github.com/CruZer0/wolckenhauer-express" target="_blank">backend</a> .
                                 </p>
                             </div>
                         </div>
@@ -202,6 +206,9 @@
             <h1>Contact</h1>
             <p>If you have questions or other interests, please leave a message.</p>
             <Contact></Contact>
+        </div>
+        <div class="footer-section">
+            <p>© Luca Wolckenhauer 2022</p>    
         </div>   
     </div>   
 </template>
@@ -221,16 +228,14 @@ export default {
             view: '',
             vurl: '',
             introductionAnimation: '',
-            titleAnimationTimeline: '',
             introductionIntersection: null,
-            skillIntersection: null,
-            projectIntersection: null,
-            certIntersection: null,
+            showMainContent: 'none',
+            titleArrowVisibility: 'none',
         }
     },
     mounted(){
         this.introductionIntersection.observe(document.querySelector("#introductionSection"))
-        
+        this.checkTitleIdle()
     },
     created(){
         var introductionIteration = 0
@@ -242,15 +247,43 @@ export default {
             else{
                 introductionIteration++
             }
-        }, {threshold: [1]})
+        }, {threshold: [0.5]})
+
+
+
         
 
 
     },
     methods: {
-        titleAnimationChanger(){
-            
-        }
+        checkIfScrolled(){
+            return new Promise((resolve) => {
+                window.addEventListener("scroll", () => {
+                    clearTimeout(scrollTimer)
+                    resolve(true)
+                })
+                const scrollTimer = setTimeout(() => {
+                    resolve(false) 
+                }, 5000)  
+
+            })
+        },
+        async checkTitleIdle(){
+            document.querySelector("#titleDesc").addEventListener("animationend",async () => {
+                console.log("123")
+                this.showMainContent = 'block'
+                var didScroll = await this.checkIfScrolled()
+                if(didScroll == false){
+                    console.log("arrow")
+                    this.titleArrowVisibility = 'block'
+                    window.addEventListener("scroll", () => {
+                        this.titleArrowVisibility = 'none'
+                    })
+                }
+                
+            })
+        },
+
     }
 }
 </script>
@@ -302,6 +335,14 @@ export default {
             animation-delay: 1s;
             opacity: 0;
         }
+        .arrow-container{
+            position: absolute;
+            bottom: 1%;
+            left: calc(50% - 5em);
+        }
+        .arrow-container img{
+            width: 10em;
+        }
         .main-content{
             width: 60%;
             margin: auto;
@@ -379,8 +420,8 @@ export default {
         }
         .project-card{
             background-color: transparent;
-            width: 25em;
-            height: 36em;
+            width: 22em;
+            height: 35em;
             position: relative;
             transition: transform 0.5s;
             transform-style: preserve-3d;
@@ -405,8 +446,15 @@ export default {
         }
         .project-front{
             background-color: white;
+            color: black;
             width: 100%;
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-front p{
+            text-align: center;
         }
         .project-back{
             background-color: black;
@@ -443,6 +491,7 @@ export default {
             width: 50%;
             border: 0.2em white solid;
             padding: 1em;
+            margin-left: 1em;
         }
         .certificate:hover{
             transform: scale(105%);
@@ -454,44 +503,93 @@ export default {
         .contact-section{
             margin-top: 1em;
         } 
-
-    @media screen and (max-width: 600px){
-        .title-section{
-            text-align: center;
-            width: 100%;
+        .footer-section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .main-content{
-            width: 60%;
-            margin: auto;
+    }
+    @media screen and (max-width: 600px){
+        @keyframes scaleDown {
+            from{scale: 400%; opacity: 0;}
+            to{scale: 100%; opacity: 1;}
+        }
+        @keyframes titleFadeIn {
+            to{opacity: 100%;}
+        }
+        @keyframes titleScrollAnimation{
+            from{color: white}
+            to{color: red}
+        }
+        @keyframes titleNameMove {
+            from{transform: translateX(300%);}
+            to{transform: translateX(0%);}
+        }
+        @keyframes titleDescMove {
+            from{transform: translateX(-300%); opacity: 1;}
+            to{transform: translateX(0%); opacity: 1;}
+        }
+
+        .title-section{
+            width: 100%;
+            height: 100vh;
         }
         .title-section hr{
             width: 60%;
             color: white;
         }
+        .title-container{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            animation: titleZoomOut 2s linear;
+            flex-direction: column;
+            height: 100%;
+        }
+        .title-name{
+            animation: titleNameMove 1s ease-in forwards;
+        }
+        .title-desc{
+            animation: titleDescMove 1s ease-in forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+        .arrow-container{
+            position: absolute;
+            bottom: 1%;
+            left: calc(50% - 5em);
+        }
+        .arrow-container img{
+            width: 10em;
+        }
+        .main-content{
+            width: 95%;
+            margin: auto;
+        }
+
         .introduction-section{
             display: flex;
             align-items: flex-start;
+            flex-direction: column;
             border: white solid 0.3em;
             border-radius: 1em;
             padding: 1em;
-            animation-name: scaleDown;
-            animation-duration: 1s;
             overflow:hidden;
             margin-top: 1em;
+            opacity: 0;
         }
         .introduction-section h1{
             padding: 0;
             margin: 0;
         }
         .introduction-image{
-            min-width: 25%;
-            width: 25%;
-            margin-right: 3em;
+            width: 100%;
         }
         .skilltree{
             display: flex;
             flex-direction: column;
-            margin-right: 4em;
+            width: 100%;
         }
         .skilltree img {
             width: 3em;
@@ -519,7 +617,8 @@ export default {
         }
         .skill-container{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            width: 100%;
         }
         .project-section{
             margin-top: 1em;
@@ -530,58 +629,37 @@ export default {
             margin-top: 1em;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         .project{
             border: white solid 0.3em;
             border-radius: 1em;
             margin-bottom: 1em;
-            margin-left: 1em;
             flex: 1;
             align-items: center;
         }
         .project-card{
             background-color: transparent;
-            width: 10vw;
-            height: 30vh;
+            width: 90vw;
+            height: auto;
             position: relative;
             transition: transform 0.5s;
             transform-style: preserve-3d;
             z-index: 0;
         }
-        .project-scene{
-            perspective: 1000px;   
-        }
-        .project-scene:hover .project-card{
-            transform: rotateY(180deg);
-        }
-        .project-face{
-            position: absolute;
-            top: 0;
-            left: 0;
-            backface-visibility: hidden;
-            z-index: 1;
-        }
-
-        .project-back .project-card{
-            background-color: black;
-        }
         .project-front{
-            background-color: white;
-            width: 100%;
-            height: 100%;
+            display: none;
         }
         .project-back{
-            background-color: black;
+            padding: 0.4em;
             width: 100%;
             height: 100%;
-            transform: rotateY(180deg);
-        }
-        .project-back p{
-            padding: 0.4em;
         }
         .project-title{
             background-color: white;
-            color: black;   
+            color: black;  
+            height: 100%; 
+            width: 100%;
         }
         .project-title h1{
             margin: 0;
@@ -597,24 +675,14 @@ export default {
             z-index: -1;
             width: 33%; 
         }
-
-        @keyframes scaleDown {
-            from{scale: 400%}
-            to{scale: 100%}
-        }
-
-        @keyframes titleFadeIn {
-            from{opacity: 0%;}
-            to{opacity: 100%;}
-        }
         .certification-container{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
         }
         .certificate{
-            width: 50%;
             border: 0.2em white solid;
             padding: 1em;
+            margin-bottom: 1em;
         }
         .certificate:hover{
             transform: scale(105%);
@@ -626,6 +694,10 @@ export default {
         .contact-section{
             margin-top: 1em;
         } 
-    }
+        .footer-section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 </style>

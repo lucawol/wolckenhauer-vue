@@ -1,0 +1,41 @@
+version: "3"
+services:
+  vue:
+    container_name: wolckenhauer-vue
+    build: 
+      context: ./wolckenhauer-vue/.
+      args:
+        VUE_APP_BASE_URL: placeholder
+    image: cruzer0/wolckenhauer-vue:latest
+        
+  express:
+    container_name: wolckenhauer-express
+    image: cruzer0/wolckenhauer-express:latest
+    build:
+      context: ./wolckenhauer-express/.
+    environment:
+      - MAIL_HOST=placeholder
+      - MAIL_PORT=placeholder
+      - MAIL_SECURE=true/false
+      - MAIL_USER=placeholder
+      - MAIL_PASSWORD=placeholder
+
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: wolckenhauer-swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=wolckenhauer.net
+      - SUBDOMAINS=luca,api
+      - VALIDATION=http
+      - EMAIL=luca-wolckenhauer@outlook.de
+    volumes:
+      - /srv/swagwol:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped  

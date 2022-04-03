@@ -27,41 +27,78 @@ export default {
 </script>
 
 <style scoped>
-.image-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    width: 100%;
-    min-height: 100%;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 5;
-}
-.image img{
-    max-width: 100%;
+@media not screen and (max-width: 600px)  {
+    .image-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 5;
+    }
+    .image{
+        max-width: 100%;
+        height: 100%;
 
+    }
+    .viewer-container{
+        min-height: 100%;
+        min-width: 100%;
+        position:fixed;
+        z-index: 10;
+    }
+    .viewer-container p{
+        font-size: 2em;
+        margin: 0;
+        top: 0.5em;
+        left: 0.5em;
+        padding-left: 0.4em;
+        padding-right: 0.4em;
+        position: fixed;
+        border: .2em white solid;
+        border-radius: 50%;
+    }
+    .viewer-container p:hover{
+        background: grey;
+        cursor: pointer;
+    }
 }
-.viewer-container{
-    min-height: 100%;
-    min-width: 100%;
-    position:fixed;
-    z-index: 10;
+@media screen and (max-width: 600px)  {
+    .image-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 5;
+    }
+    .image{
+        width: 100vw;
+    }
+    .viewer-container{
+        position:fixed;
+        z-index: 10;
+    }
+    .viewer-container p{
+        font-size: 2em;
+        margin: 0;
+        top: 0.5em;
+        left: 0.5em;
+        padding-left: 0.4em;
+        padding-right: 0.4em;
+        position: fixed;
+        border: .2em white solid;
+        border-radius: 50%;
+    }
+    .viewer-container p:hover{
+        background: grey;
+        cursor: pointer;
+    }
 }
-.viewer-container p{
-    font-size: 2em;
-    margin: 0;
-    top: 0.5em;
-    left: 0.5em;
-    padding-left: 0.4em;
-    padding-right: 0.4em;
-    position: fixed;
-    border: .2em white solid;
-    border-radius: 50%;
-}
-.viewer-container p:hover{
-    background: grey;
-    cursor: pointer;
-}
+
 </style>
