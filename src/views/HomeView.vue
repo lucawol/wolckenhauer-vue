@@ -426,7 +426,6 @@ export default {
             transform-style: preserve-3d;
             z-index: 0;
             height: 34em;
-            width: 20em;
         }
         .project-scene{
             perspective: 1000px;   
