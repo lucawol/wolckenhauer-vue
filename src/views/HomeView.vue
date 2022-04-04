@@ -122,7 +122,7 @@
                             </div>
                             <div class="project-face project-back">
                                 <p>tests with websockets and temperature readers</p>
-                                <video autoplay loop src="../assets/movies/solarflare-pi.webm"></video>
+                                <video autoplay loop playsinline src="../assets/movies/solarflare-pi.webm"></video>
                                 <p>
                                 This Project was made out of an Raspberry Pi Nano and a Django Webserver. The Website
                                 shows the live temperature of an sensor connected to the pi. The Temperature is sent over
@@ -143,7 +143,7 @@
                             </div>
                             <div class="project-face project-back">
                                 <p>a electron reddit client</p>
-                                <video autoplay loop src="../assets/movies/peddit_show.webm"></video>
+                                <video autoplay loop playsinline src="../assets/movies/peddit_show.webm"></video>
                                 <p>
                                     This App is supposed to run on a small (max. 12 inch) Screen and
                                     Scroll your personal Reddit Home Feed. 
@@ -169,7 +169,7 @@
                             </div>
                             <div class="project-face project-back">
                                 <p>Personal Website</p>
-                                <video autoplay loop src="../assets/movies/lwwebsite.webm"></video>
+                                <video autoplay loop playsinline src="../assets/movies/lwwebsite.webm"></video>
                                 <p>
                                     a website that gives me an stage to present myself. its also this very website :) 
                                     when you are interested in the source code here is the github link on behalf the <a target="_blank" href="https://github.com/CruZer0/wolckenhauer-vue">frontend</a> and here's
@@ -411,8 +411,6 @@ export default {
             align-items: center;
         }
         .project{
-            border: white solid 0.3em;
-            border-radius: 1em;
             margin-bottom: 1em;
             margin-left: 1em;
             flex: 1;
@@ -439,6 +437,8 @@ export default {
             left: 0;
             backface-visibility: hidden;
             z-index: 1;
+            width: 100%;
+            height: 100%;
         }
 
         .project-back .project-card{
@@ -446,6 +446,7 @@ export default {
         }
         .project-front{
             background-color: white;
+            padding: 0;
             color: black;
             width: 100%;
             height: 100%;
@@ -463,7 +464,7 @@ export default {
             transform: rotateY(180deg);
         }
         .project-back p{
-            padding: 0.4em;
+            
         }
         .project-title{
             background-color: white;

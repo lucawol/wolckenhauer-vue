@@ -24,10 +24,13 @@ export default {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
   }
-  h1{
-    margin: 0;
-    padding: 0;
+  HTML, body {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
   }
+
+
 
 
 
