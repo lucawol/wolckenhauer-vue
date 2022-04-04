@@ -370,6 +370,7 @@ export default {
         .skilltree{
             display: flex;
             flex-direction: column;
+            width: 100%;
             margin-right: 4em;
         }
         .skilltree img {
@@ -382,6 +383,7 @@ export default {
             border-radius: 1em;
             padding: 1em;
             margin-top: 1em;
+            width: 100%;
         }
         .skill-section h1{
             margin-bottom: 1em;
@@ -633,16 +635,13 @@ export default {
             flex-direction: column;
         }
         .project{
-            border: white solid 0.3em;
-            border-radius: 1em;
             margin-bottom: 1em;
             flex: 1;
             align-items: center;
         }
         .project-card{
             background-color: transparent;
-            width: 90vw;
-            height: auto;
+            width: 100%;
             position: relative;
             transition: transform 0.5s;
             transform-style: preserve-3d;
@@ -652,7 +651,6 @@ export default {
             display: none;
         }
         .project-back{
-            padding: 0.4em;
             width: 100%;
             height: 100%;
         }
@@ -669,7 +667,7 @@ export default {
             text-align: center;
         }
         .project-back video{
-            width: 100%;
+            max-width: 100%;
         }
         .project-hidden{
             opacity: 0;
