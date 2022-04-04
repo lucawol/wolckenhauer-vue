@@ -344,7 +344,7 @@ export default {
             width: 10em;
         }
         .main-content{
-            width: 60%;
+            max-width: 70%;
             margin: auto;
         }
 
@@ -357,6 +357,7 @@ export default {
             overflow:hidden;
             margin-top: 1em;
             opacity: 0;
+            width: 100%;
         }
         .introduction-section h1{
             padding: 0;
@@ -420,12 +421,12 @@ export default {
         }
         .project-card{
             background-color: transparent;
-            width: 22em;
-            height: 35em;
             position: relative;
             transition: transform 0.5s;
             transform-style: preserve-3d;
             z-index: 0;
+            height: 34em;
+            width: 20em;
         }
         .project-scene{
             perspective: 1000px;   
