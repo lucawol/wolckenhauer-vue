@@ -208,7 +208,7 @@
             <Contact></Contact>
         </div>
         <div class="footer-section">
-            <p>© Luca Wolckenhauer 2022</p>    
+            <p>© Luca Wolckenhauer 2022.04</p>    
         </div>   
     </div>   
 </template>
