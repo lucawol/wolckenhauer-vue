@@ -32,6 +32,10 @@
                 <div class="skilltree">
                     <h1>languages</h1>
                     <div class="skill">
+                        <img src="../assets/golang-icon.png">
+                        <p>Golang</p>
+                    </div>
+                    <div class="skill">
                         <img src="../assets/cpp-icon.png">
                         <p>C++</p>
                     </div>
@@ -105,33 +109,16 @@
                         <img src="../assets/express-icon.png">
                         <p>ExpressJS</p>
                     </div>
+                    <div class="skill">
+                        <img src="../assets/gin-icon.png">
+                        <p>Gin Framework</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="project-section">
             <h1>Personal Projects</h1>
             <div class="project-container">
-                <div class="project">
-                    <div class="project-title">
-                        <h1>solarflare-pi</h1>
-                    </div>
-                    <div class="project-scene">
-                        <div class="project-card">
-                            <div class="project-face project-front">
-                                <p>Hover</p>
-                            </div>
-                            <div class="project-face project-back">
-                                <p>tests with websockets and temperature readers</p>
-                                <video autoplay loop playsinline src="../assets/movies/solarflare-pi.webm"></video>
-                                <p>
-                                This Project was made out of an Raspberry Pi Nano and a Django Webserver. The Website
-                                shows the live temperature of an sensor connected to the pi. The Temperature is sent over
-                                TCP from the Pi to the Webserver. <a target="_blank" href="https://github.com/CruZer0/solarflare-pi">Github Link</a>.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="project">
                     <div class="project-title">
                         <h1>peddit</h1>
@@ -152,7 +139,7 @@
                                     Right now the App is in early development and far behind the feature set
                                     it should have. Later i want to add a settings menu and add touch gestures
                                     for navigation. This is still an private repository so i can only offer an
-                                    <a href="../assets/downloads/peddit-main.zip" download>Download Link</a>
+                                    <a href="https://cloud.wolckenhauer.net/s/pFHwSmgYntA3pW9">Download Link</a>
                                 </p>
                             </div>
                         </div>
@@ -208,7 +195,7 @@
             <Contact></Contact>
         </div>
         <div class="footer-section">
-            <p>© Luca Wolckenhauer 2022.04</p>    
+            <p>© Luca Wolckenhauer 2023.12</p>    
         </div>   
     </div>   
 </template>
@@ -425,7 +412,7 @@ export default {
             transition: transform 0.5s;
             transform-style: preserve-3d;
             z-index: 0;
-            height: 34em;
+            height: 35em;
         }
         .project-scene{
             perspective: 1000px;   
