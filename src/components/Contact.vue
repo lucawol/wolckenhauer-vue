@@ -48,11 +48,11 @@ export default {
     methods: {
         async sumbitContact(){
             await axios.post('/contact', this.form)
-                .then(resp => {
-                    this.success = resp.statusText
+                .then(() => {
+                    alert("E-Mail has been sent")
                 })
                 .catch(err => {
-                    this.error = err
+                    alert("There has been an error: "+ err)
                 }) 
         }
     }
