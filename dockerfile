@@ -5,7 +5,7 @@ RUN npm install
 COPY . .
 ARG VUE_APP_BASE_URL
 ENV VUE_APP_BASE_URL $VUE_APP_BASE_URL
-
+ENV NODE_OPTIONS --openssl-legacy-provider
 RUN npm run build
 
 FROM nginx:stable-alpine as production-stage
