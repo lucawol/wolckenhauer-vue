@@ -46,8 +46,8 @@ export default {
 
     },
     methods: {
-        sumbitContact(){
-            axios.post('/contact', this.form)
+        async sumbitContact(){
+            await axios.post('/contact', this.form)
                 .then(resp => {
                     this.success = resp.statusText
                 })
